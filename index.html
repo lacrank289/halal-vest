@@ -312,5 +312,24 @@
         document.getElementById("wealthAnalysisResult").innerHTML = `<p style="color:var(--text-muted)">Total Assets Accounted For: <strong style="color:white; font-size:1.1rem;">$${total.toLocaleString()}</strong></p>`;
     }
 </script>
-</body>
+<script>
+  async function getCryptoPrice() {
+    try {
+      // This fetches a real, live Bitcoin price from a free, open API (no keys needed)
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+      const data = await response.json();
+      
+      // This finds your text on the screen and replaces it with the live price
+      const targetElement = document.getElementById('crypto-price') || document.body;
+      targetElement.innerHTML = `Bitcoin: $${data.bitcoin.usd.toLocaleString()}`;
+    } catch (error) {
+      console.log("Error loading prices:", error);
+    }
+  }
+
+  // Run it immediately when the page loads
+  getCryptoPrice();
+  // Refresh the price automatically every 30 seconds
+  setInterval(getCryptoPrice, 30000);
+</script></body>
 </html>
