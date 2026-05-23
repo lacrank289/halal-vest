@@ -309,8 +309,7 @@
         const savings = parseFloat(document.getElementById("savingsCash").value) || 0;
         const investing = parseFloat(document.getElementById("investingCash").value) || 0;
         const total = spending + savings + investing;
-        document.getElementById("wealthAnalysisResult").innerHTML = `<p style="color:var(--text-muted)">Total Assets Accounted For: <strong style="color:white; font-size:1.1rem;">$${total.toLocaleString()}</strong></p>`;
-    }
+        <div id="crypto-price">Bitcoin: Loading...</div>    }
 </script>
 <script>
   async function getCryptoPrice() {
